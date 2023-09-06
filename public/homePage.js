@@ -69,7 +69,7 @@ moneyManager.conversionMoneyCallback = (data) =>
 moneyManager.sendMoneyCallback = (data) =>
   ApiConnector.transferMoney(data, (response) => {
     if (response.success) {
-      ProfileWidget.showProfile(response, data);
+      ProfileWidget.showProfile(response.data);
       moneyManager.setMessage(response.success, "Перевод выполнен");
     } else {
       moneyManager.setMessage(response.success, response.error);
@@ -114,7 +114,7 @@ favoritesWidget.removeUserCallback = (data) =>
     if (response.success) {
       favoritesWidget.clearTable();
       favoritesWidget.fillTable(response.data);
-      moneyManager.updateUserList(response.data);
+      moneyManager.updateUsersList(response.data);
       favoritesWidget.setMessage(
         responce.success,
         "Пользователь успешно удален"
